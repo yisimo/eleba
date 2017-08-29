@@ -2,16 +2,22 @@
   <div id="app">
     <v-header>I am header</v-header>
     <nav class="tag">
-      <div class="tag-item">商品</div>
-      <div class="tag-item">评价</div>
-      <div class="tag-item">商家</div>
+      <div class="tag-item">
+        <router-link to="/goods">商品</router-link>
+      </div>
+      <div class="tag-item">
+        <router-link to="/ratings">评价</router-link>
+      </div>
+      <div class="tag-item">
+        <router-link to="/seller">商家</router-link>
+      </div>
     </nav>
-    <main>I am content</main>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import VHeader from './components/header/header.vue';
+  import VHeader from 'components/header/header.vue';
   export default {
     components: {
       VHeader
@@ -29,4 +35,10 @@
       .tag-item
         flex: 1
         text-align: center
+        & > a
+          display: block
+          color: rgb(77,85,93)
+          font-style: 14px
+          &.active
+            color: rgb(240,20,20)
 </style>
