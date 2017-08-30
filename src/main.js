@@ -7,6 +7,8 @@ import goods from 'components/goods/goods.vue';
 import seller from 'components/seller/seller.vue';
 import ratings from 'components/ratings/ratings.vue';
 
+import 'common/stylus/index.styl';
+
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
@@ -41,4 +43,3 @@ new Vue({
   template: '<App/>',
   components: {App}
 });
-
