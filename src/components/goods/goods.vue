@@ -28,7 +28,7 @@
                   <span class="now">￥{{ food.price }}</span><span class="old" v-show="food.oldPrice">￥{{ food.oldPrice }}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <cartcontrol @add="addFood" :food="food"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -36,7 +36,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" @cart-add="_drop(event.target)"></shopcart>
   </div>
 </template>
 
@@ -105,13 +105,21 @@
         let el = foodlist[index];
         this.foodsScroll.scrollToElement(el, 300);
       },
+      addFood(target) {
+        this._drop(target);
+      },
+      _drop(target) {
+        // 体验优化，异步执行下落动画
+        this.$nextTick(() => {
+          this.$refs.shopcart.drop(target);
+        });
+      },
       _initScroll() {
         this.menuScroll = new BScroll(this.$el.querySelector('.menu-wrapper'), {
           click: true
         });
         this.foodsScroll = new BScroll(this.$el.querySelector('.foods-wrapper'), {
           click: true,
-          transition: true,
           probeType: 3
         });
         this.foodsScroll.on('scroll', (pos) => {
@@ -132,6 +140,11 @@
     components: {
       shopcart,
       cartcontrol
+    },
+    events: {
+      'cart-add'(target) {
+        this._drop(target);
+      }
     }
   };
 </script>
