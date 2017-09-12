@@ -14,7 +14,7 @@
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{ item.name }}</h1>
           <ul>
-            <li @click="selecteFood(food, $event)" v-for="food in item.foods" class="food-item border-1px">
+            <li @click="selectFood(food, $event)" v-for="food in item.foods" class="food-item border-1px">
               <div class="icon">
                 <img :src="food.icon" width="57" height="57">
               </div>
@@ -37,7 +37,7 @@
       </ul>
     </div>
     <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" @cart-add="_drop(event.target)"></shopcart>
-    <food :food="selectedFood" ref="food"></food>
+    <food @add="addFood" :food="selectedFood" ref="food"></food>
   </div>
 </template>
 
@@ -108,7 +108,7 @@
         let el = foodlist[index];
         this.foodsScroll.scrollToElement(el, 300);
       },
-      selecteFood(index, event) {
+      selectFood(food, event) {
         if (!event._constructed) {
           return;
         }
