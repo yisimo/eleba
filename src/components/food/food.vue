@@ -17,14 +17,15 @@
           <div class="price">
             <span class="now">￥{{ food.price }}</span><span class="old" v-show="food.oldPrice">￥{{ food.oldPrice }}</span>
           </div>
+          <div class="cartcontrol-wrapper">
+            <cartcontrol :food="food"></cartcontrol>
+          </div>
+          <transition name="fade">
+            <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.count === 0">加入购物车</div>
+          </transition>
         </div>
-        <div class="cartcontrol-wrapper">
-          <cartcontrol :food="food"></cartcontrol>
-        </div>
-        <transition name="fade">
-          <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.count === 0">加入购物车</div>
-        </transition>
       </div>
+      <spilt></spilt>
     </div>
   </transition>
 </template>
@@ -33,6 +34,7 @@
   import BScroll from 'better-scroll';
   import Vue from 'vue';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
+  import spilt from 'components/spilt/spilt';
 
   export default {
     props: {
@@ -70,7 +72,8 @@
       }
     },
     components: {
-      cartcontrol
+      cartcontrol,
+      spilt
     }
   };
 </script>
@@ -140,27 +143,27 @@
           text-decoration: line-through
           font-size: 10px
           color: rgb(147,153,159)
-    .cartcontrol-wrapper
-      position: absolute
-      right: 12px
-      bottom: 12px
-    .buy
-      position: absolute
-      right: 18px
-      bottom: 18px
-      z-index: 10
-      height: 24px
-      line-height: 24px
-      padding: 0 12px
-      box-sizing: border-box
-      border-radius: 12px
-      font-size: 10px
-      color: #fff
-      background: rgb(0, 160, 220)
-      opacity: 1
-      &.fade-enter-active, &.fade-leave-active
-        transition: all 0.2s
-      &.fade-enter, &.fade-leave-active
-        opacity: 0
-        z-index: -1
+      .cartcontrol-wrapper
+        position: absolute
+        right: 12px
+        bottom: 12px
+      .buy
+        position: absolute
+        right: 18px
+        bottom: 18px
+        z-index: 10
+        height: 24px
+        line-height: 24px
+        padding: 0 12px
+        box-sizing: border-box
+        border-radius: 12px
+        font-size: 10px
+        color: #fff
+        background: rgb(0, 160, 220)
+        opacity: 1
+        &.fade-enter-active, &.fade-leave-active
+          transition: all 0.2s
+        &.fade-enter, &.fade-leave-active
+          opacity: 0
+          z-index: -1
 </style>
