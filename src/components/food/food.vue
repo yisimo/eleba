@@ -25,12 +25,12 @@
             <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.count === 0">加入购物车</div>
           </transition>
         </div>
-        <spilt v-show="food.info"></spilt>
+        <split v-show="food.info"></split>
         <div class="info" v-show="food.info">
           <h1 class="title">商品信息</h1>
           <p class="text">{{ food.info }}</p>
         </div>
-        <spilt></spilt>
+        <split></split>
         <div class="rating">
           <h1 class="title">商品评价</h1>
           <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType"
@@ -62,7 +62,7 @@
   import {formatDate} from 'common/js/date';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import ratingselect from 'components/ratingselect/ratingselect';
-  import spilt from 'components/spilt/spilt';
+  import split from 'components/split/split';
 
   const ALL = 2;
 
@@ -141,7 +141,7 @@
     components: {
       cartcontrol,
       ratingselect,
-      spilt
+      split
     }
   };
 </script>

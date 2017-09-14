@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <spilt></spilt>
+        <split></split>
         <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent" :ratings="ratings"></ratingselect>
         <div class="rating-wrapper">
           <ul>
@@ -56,7 +56,7 @@
 
 <script type="text/ecmascript-6">
   import star from 'components/star/star';
-  import spilt from 'components/spilt/spilt';
+  import split from 'components/split/split';
   import ratingselect from 'components/ratingselect/ratingselect';
   import BScroll from 'better-scroll';
   import {formatDate} from 'common/js/date';
@@ -122,7 +122,7 @@
     },
     components: {
       star,
-      spilt,
+      split,
       ratingselect,
       BScroll
     }
