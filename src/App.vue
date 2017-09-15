@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header :seller="seller">I am header</v-header>
+    <v-header :seller="seller"></v-header>
     <nav class="tag border-1px">
       <div class="tag-item">
         <router-link to="/goods">商品</router-link>
